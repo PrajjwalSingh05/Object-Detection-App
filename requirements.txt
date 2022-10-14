@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 streamlit
 imblearn
 joblib
@@ -7,13 +7,5 @@ numpy
 seaborn
 scikit-learn
 matplotlib
-=======
-streamlit
-imblearn
-joblib
-pandas 
-numpy
-seaborn
-scikit-learn
-matplotlib
->>>>>>> c0d455e3e4142eda586b952caf940d7e9bb9cd18
+Tensorflow
+
