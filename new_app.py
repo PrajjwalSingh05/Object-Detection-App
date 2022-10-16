@@ -9,6 +9,7 @@ import tensorflow as tf
 import streamlit as st
 import numpy as np
 from PIL import Image
+import matplotlib.pyplot as plt
 
 
 st.set_page_config(
@@ -25,19 +26,21 @@ def introduction():
     \nStream : Computer Science
     \nUniversity : University of Lucknow
     \nLocation : Lucknow, INDIA
-    \nThis Project Perfrom Prdiction Wheather You Have Donated Blood Or not 
+    \nThis Project Perfrom Object dection 
         
         - The Libraries I used in Project are:
             Matplotlib Explore here
             Sklearn Explore Here
             Streamlit Explore here
             Pandas 
-            imbelearn 
+            Tensorflow
+
         - Their Following Tasks are Implemented in the Project:
             Data Preparation and Cleaning
             Model design
             Best Feature Selectio 
             References and Future Work
+            Object Prediction
     """)
     
 
@@ -59,13 +62,27 @@ def predict_class(model, image, shape=(32, 32)):
 with st.spinner("Loading Model Into Memory..."):
     model = load_model()
 def execute():
-    st.write(" ['airplane','automobile','bird','cat','deer','dog','frog','horse','ship','truck']")
+    st.markdown('''The Following Picture can be Detected
+    
+     airplane , automobile , bird, cat , deer , dog ,frog ,horse , ship , truck ''')
     # with st.spinner("Loading Model Into Memory..."):
     #     model= load_model()
 
-    st.title("Object Detection App")
+    # st.title("Object Detection App")
     st.write("This is a simple object detection web app to detect objects in images.")
+    result=0.8741
+    non_result=1-result
+    legend=["Accuracy","Not Accurate"]
+    sizes = np.array([result,non_result])
+    fig1, ax1 = plt.subplots(figsize=(5,5))
+    colour=["blue","purple"]
+    # colour=["black","grey"]
+    ax1.pie(sizes, labels=legend, colors=colour,autopct='%1.1f%%',
+            shadow=True, startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
+    st.sidebar.write("The Maximum Accuracy Of the Model is :87.4%")
+    st.sidebar.pyplot(fig1, )
     with st.form("Form1"):
         file = st.file_uploader("Upload an image", type=["jpg", "png"])
         submit = st.form_submit_button("Submit")
@@ -85,7 +102,7 @@ def execute():
 
 # image=Image.open("house_sale.jpg")
 
-st.header("House Price Prediction ")
+st.header("Object Detection System")
 
 options = ['Project Introduction', 'Execution']
 
